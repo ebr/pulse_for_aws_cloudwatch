@@ -23,11 +23,11 @@ import splunk.entity as entity
 
 class MetricGrabber:
 			
-	# AWS Access Key ID
-	accesskey = None
+	# # AWS Access Key ID
+	# accesskey = None
 	
-	# AWS Secret Key
-	secretkey = None
+	# # AWS Secret Key
+	# secretkey = None
 	
 	def __init__(self):
 		"""

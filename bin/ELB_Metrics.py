@@ -15,9 +15,14 @@
 ## specific language governing permissions and limitations under the License.
 
 from MetricGrabber import MetricGrabber
+from AWS_Keys import aws_keys
 
 x = MetricGrabber()
 
-x.connect("AWS/ELB",None,"AvailabilityZone")
-x.connect("AWS/ELB",None,"LoadBalancerName")
-x.connect("AWS/ELB",None,"MetricName")
+for keypair in aws_keys.values():
+	x.accesskey=keypair[0]
+	x.secretkey=keypair[1]
+
+	x.connect("AWS/ELB",None,"AvailabilityZone")
+	x.connect("AWS/ELB",None,"LoadBalancerName")
+	x.connect("AWS/ELB",None,"MetricName")

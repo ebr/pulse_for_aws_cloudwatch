@@ -1,7 +1,7 @@
 #!/usr/bin/env python
-## Author:: Andrew Painter (andrew.painter@bestbuy.com) 
+## Author:: Eugene Brodsky (boomstik@gmail.com) 
 ## 
-## Copyright 2012, BBY Solutions, Inc. 
+## Copyright 2014, Eugene Brodsky. 
 ## 
 ## Licensed under the Apache License, Version 2.0 (the "License"); you may not 
 ## use this file except in compliance with the License. You may obtain a copy 
@@ -14,13 +14,4 @@
 ## CONDITIONS OF ANY KIND, either express or implied. See the License for the 
 ## specific language governing permissions and limitations under the License.
 
-from MetricGrabber import MetricGrabber
-from AWS_Keys import aws_keys
-
-x = MetricGrabber()
-
-for keypair in aws_keys.values():
-	x.accesskey=keypair[0]
-	x.secretkey=keypair[1]
-
-	x.connect("AWS/EBS",None,"VolumeId")
+aws_keys = ["acct1": ("ACCESS_KEY","SECRET_KEY"), "acct2": ("ACCESS_KEY","SECRET_KEY")]

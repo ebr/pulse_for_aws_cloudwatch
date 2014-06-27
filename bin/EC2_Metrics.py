@@ -15,9 +15,14 @@
 ## specific language governing permissions and limitations under the License.
 
 from MetricGrabber import MetricGrabber
+from AWS_Keys import aws_keys
 
 x = MetricGrabber()
 
-x.connect("AWS/EC2",None,"AutoScalingGroupName")
-x.connect("AWS/EC2",None,"InstanceId")
-x.connect("AWS/EC2",None,"MetricName")
+for keypair in aws_keys.values():
+	x.accesskey=keypair[0]
+	x.secretkey=keypair[1]
+
+	x.connect("AWS/EC2",None,"AutoScalingGroupName")
+	x.connect("AWS/EC2",None,"InstanceId")
+	x.connect("AWS/EC2",None,"MetricName")

@@ -16,5 +16,12 @@
 
 from MetricGrabber import MetricGrabber
 
+from AWS_Keys import aws_keys
+
 x = MetricGrabber()
-x.connect("AlarmHistory")
+
+for keypair in aws_keys.values():
+	x.accesskey=keypair[0]
+	x.secretkey=keypair[1]
+
+	x.connect("AlarmHistory")
