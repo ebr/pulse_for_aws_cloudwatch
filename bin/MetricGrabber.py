@@ -35,7 +35,7 @@ class MetricGrabber:
 		"""
 		
 		# Grab the Session ID Passed by Splunk.  Grab the secretkey and accesskey provided at setup
-		self.grabKeys()
+		# self.grabKeys()
 		self.endTime = datetime.datetime.utcnow()
 		
 		# Parser for passed arguments.  Allows formats of "region seconds" "seconds" "region" "seconds region" or none
@@ -215,3 +215,18 @@ class MetricGrabber:
 			   exit(2)
 
 			self.accesskey, self.secretkey = self.getCredentials(sessionKey)
+
+	property
+	def accesskey(self):
+	    return self._accesskey
+	@accesskey.setter
+	def accesskey(self, value):
+	    self._accesskey = value
+	
+	property
+	def secretkey(self):
+	    return self._secretkey
+	@secretkey.setter
+	def secretkey(self, value):
+	    self._secretkey = value
+	
