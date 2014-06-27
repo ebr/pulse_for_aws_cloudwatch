@@ -14,4 +14,4 @@
 ## CONDITIONS OF ANY KIND, either express or implied. See the License for the 
 ## specific language governing permissions and limitations under the License.
 
-aws_keys = ["acct1": ("ACCESS_KEY","SECRET_KEY"), "acct2": ("ACCESS_KEY","SECRET_KEY")]
+aws_keys = {"acct1": ("ACCESS_KEY","SECRET_KEY"), "acct2": ("ACCESS_KEY","SECRET_KEY")}
