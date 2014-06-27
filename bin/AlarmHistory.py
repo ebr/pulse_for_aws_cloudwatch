@@ -15,7 +15,6 @@
 ## specific language governing permissions and limitations under the License.
 
 from MetricGrabber import MetricGrabber
-
 from AWS_Keys import aws_keys
 
 x = MetricGrabber()
