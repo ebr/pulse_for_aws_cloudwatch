@@ -17,11 +17,8 @@
 from MetricGrabber import MetricGrabber
 from AWS_Keys import aws_keys
 
-x = MetricGrabber()
-
 for keypair in aws_keys.values():
-	x.accesskey=keypair[0]
-	x.secretkey=keypair[1]
+	x = MetricGrabber(keypair[0],keypair[1])
 
 	x.connect("AWS/ELB",None,"AvailabilityZone")
 	x.connect("AWS/ELB",None,"LoadBalancerName")

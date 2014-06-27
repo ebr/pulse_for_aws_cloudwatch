@@ -29,11 +29,14 @@ class MetricGrabber:
 	# # AWS Secret Key
 	# secretkey = None
 	
-	def __init__(self):
+	def __init__(self, accesskey, secretkey):
 		"""
 		Init method to retrieve the AWS Access Key/Secret Key, setup the AWS Connection and Parse the CLI Arguments
 		"""
 		
+		self.accesskey=accesskey
+		self.secretkey=secretkey
+
 		# Grab the Session ID Passed by Splunk.  Grab the secretkey and accesskey provided at setup
 		# self.grabKeys()
 		self.endTime = datetime.datetime.utcnow()
@@ -182,51 +185,36 @@ class MetricGrabber:
 			else:
 				break
 	
-	def getCredentials(self,sessionKey):
-		"""
-		Splunk provided code for grabbing username/passwords during setup.
-		"""
-		myapp = 'pulse_for_aws_cloudwatch'
-		try:
-		# list all credentials
-			entities = entity.getEntities(['admin', 'passwords'], namespace=myapp,
-			                              owner='nobody', sessionKey=sessionKey)
-		except Exception, e:
-			raise Exception("Could not get %s credentials from splunk. Error: %s"
-			                % (myapp, str(e)))
+	# def getCredentials(self,sessionKey):
+	# 	"""
+	# 	Splunk provided code for grabbing username/passwords during setup.
+	# 	"""
+	# 	myapp = 'pulse_for_aws_cloudwatch'
+	# 	try:
+	# 	# list all credentials
+	# 		entities = entity.getEntities(['admin', 'passwords'], namespace=myapp,
+	# 		                              owner='nobody', sessionKey=sessionKey)
+	# 	except Exception, e:
+	# 		raise Exception("Could not get %s credentials from splunk. Error: %s"
+	# 		                % (myapp, str(e)))
 
-		# return first set of credentials
-		for i, c in entities.items():
-			return c['username'], c['clear_password']
+	# 	# return first set of credentials
+	# 	for i, c in entities.items():
+	# 		return c['username'], c['clear_password']
 
-		raise Exception("No credentials have been found")
+	# 	raise Exception("No credentials have been found")
 
-	def grabKeys(self):
-		"""
-		Splunk provided code to get the session key passed when executed.
-		"""
-		if self.accesskey == None:
-			sessionKey = sys.stdin.readline().strip()
+	# def grabKeys(self):
+	# 	"""
+	# 	Splunk provided code to get the session key passed when executed.
+	# 	"""
+	# 	if self.accesskey == None:
+	# 		sessionKey = sys.stdin.readline().strip()
 
-			if len(sessionKey) == 0:
-			   sys.stderr.write("Did not receive a session key from splunkd. " +
-			                    "Please enable passAuth in inputs.conf for this " +
-			                    "script\n")
-			   exit(2)
+	# 		if len(sessionKey) == 0:
+	# 		   sys.stderr.write("Did not receive a session key from splunkd. " +
+	# 		                    "Please enable passAuth in inputs.conf for this " +
+	# 		                    "script\n")
+	# 		   exit(2)
 
-			self.accesskey, self.secretkey = self.getCredentials(sessionKey)
-
-	property
-	def accesskey(self):
-	    return self._accesskey
-	@accesskey.setter
-	def accesskey(self, value):
-	    self._accesskey = value
-	
-	property
-	def secretkey(self):
-	    return self._secretkey
-	@secretkey.setter
-	def secretkey(self, value):
-	    self._secretkey = value
-	
+	# 		self.accesskey, self.secretkey = self.getCredentials(sessionKey)
